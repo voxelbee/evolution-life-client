@@ -1,6 +1,5 @@
 # evolution-life-client
 
-==============================
 Standalone installation
 ==============================
 
