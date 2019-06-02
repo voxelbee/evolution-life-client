@@ -41,7 +41,7 @@ public enum EnumPacketTypes
     {
       try
       {
-        return (AIPacket) EnumPacketTypes.values()[ id ].packetClass.getConstructor( String.class ).newInstance();
+        return (AIPacket) EnumPacketTypes.values()[ id ].packetClass.getConstructor().newInstance();
       }
       catch ( InstantiationException | IllegalAccessException | IllegalArgumentException | InvocationTargetException | NoSuchMethodException
           | SecurityException e )

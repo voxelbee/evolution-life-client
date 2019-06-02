@@ -60,7 +60,11 @@ public class ClientManager
     byte[] buffer = new byte[ dataSize ];
     this.in.read( buffer );
 
-    this.handleInPacket( Unpooled.wrappedBuffer( buffer ) );
+    ByteBuf buf = Unpooled.wrappedBuffer( buffer );
+
+    AIPacket packet = EnumPacketTypes.PacketTypes.getPacketFromID( buf.readInt() );
+    packet.readPacket( buf );
+    packet.handlePacket();
   }
 
   public void close()
@@ -76,11 +80,6 @@ public class ClientManager
     {
       e.printStackTrace();
     }
-  }
-
-  private void handleInPacket( ByteBuf buffer )
-  {
-
   }
 
   /**

@@ -10,7 +10,7 @@ public class EVOClient
   public static void main( String[] args ) throws IOException
   {
     ClientManager client = new ClientManager( "localhost", 5000 );
-    client.sendPacket( new ClientCountPacket( 70 ) );
+    client.sendPacket( new ClientCountPacket( 100 ) );
     client.close();
   }
 }

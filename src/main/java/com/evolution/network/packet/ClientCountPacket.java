@@ -12,6 +12,11 @@ public class ClientCountPacket implements AIPacket
     this.AICount = count;
   }
 
+  public ClientCountPacket()
+  {
+
+  }
+
   @Override
   public void readPacket( ByteBuf buf )
   {
