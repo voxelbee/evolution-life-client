@@ -5,7 +5,6 @@ import io.netty.buffer.ByteBuf;
 public class ClientCountPacket implements AIPacket
 {
   public int AICount;
-  public static final int ID = 0;
 
   public ClientCountPacket( int count )
   {

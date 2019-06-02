@@ -7,10 +7,16 @@ import com.evolution.network.packet.ClientCountPacket;
 
 public class EVOClient
 {
-  public static void main( String[] args ) throws IOException
+  public static ClientManager client;
+
+  public static void main( String[] args ) throws IOException, InterruptedException
   {
-    ClientManager client = new ClientManager( "localhost", 5000 );
-    client.sendPacket( new ClientCountPacket( 100 ) );
-    client.close();
+    client = new ClientManager( "localhost", 5000 );
+    client.sendPacket( new ClientCountPacket( 10 ) );
+
+    while ( true )
+    {
+      Thread.sleep( 100 );
+    }
   }
 }

@@ -5,7 +5,11 @@ import java.io.InputStream;
 import java.io.OutputStream;
 import java.net.Socket;
 import java.net.UnknownHostException;
+import java.util.HashMap;
+import java.util.Map;
+import java.util.UUID;
 
+import com.evolution.ai.AI;
 import com.evolution.network.packet.AIPacket;
 import com.evolution.network.packet.EnumPacketTypes;
 
@@ -19,6 +23,8 @@ public class ClientManager
 
   private InputStream in;
   private OutputStream out;
+
+  private Map< UUID, AI > ais = new HashMap< UUID, AI >();
 
   public ClientManager( String ipAddress, int port ) throws UnknownHostException, IOException
   {
@@ -113,5 +119,10 @@ public class ClientManager
     packet.writePacket( buf );
     this.sendBytes( buf );
     buf.release();
+  }
+
+  public void handleDNAPacket( byte[] dna, UUID aiId )
+  {
+    this.ais.put( aiId, new AI( dna ) );
   }
 }
