@@ -6,7 +6,11 @@ import java.io.OutputStream;
 import java.net.Socket;
 import java.net.UnknownHostException;
 
+import com.evolution.network.packet.AIPacket;
+import com.evolution.network.packet.EnumPacketTypes;
+
 import io.netty.buffer.ByteBuf;
+import io.netty.buffer.Unpooled;
 
 public class ClientManager
 {
@@ -56,7 +60,7 @@ public class ClientManager
     byte[] buffer = new byte[ dataSize ];
     this.in.read( buffer );
 
-    this.handleInPacket( buffer );
+    this.handleInPacket( Unpooled.wrappedBuffer( buffer ) );
   }
 
   public void close()
@@ -74,7 +78,7 @@ public class ClientManager
     }
   }
 
-  private void handleInPacket( byte[] buf )
+  private void handleInPacket( ByteBuf buffer )
   {
 
   }
@@ -84,7 +88,7 @@ public class ClientManager
    *
    * @param buffer
    */
-  public void sendBytes( ByteBuf buffer )
+  private void sendBytes( ByteBuf buffer )
   {
     try
     {
@@ -96,5 +100,19 @@ public class ClientManager
     {
       e.printStackTrace();
     }
+  }
+
+  /**
+   * Sends the packet to the server
+   *
+   * @param packet
+   */
+  public void sendPacket( AIPacket packet )
+  {
+    ByteBuf buf = Unpooled.directBuffer( 8 );
+    buf.writeInt( EnumPacketTypes.PacketTypes.getIdFromPacket( packet ) ); // Writes the id to the buffer
+    packet.writePacket( buf );
+    this.sendBytes( buf );
+    buf.release();
   }
 }
