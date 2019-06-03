@@ -7,12 +7,17 @@ public class AI implements Runnable
   public AI( byte[] dna )
   {
     this.dna = dna;
-    System.out.println( new String( this.dna ) );
+    System.out.println( "New AI" );
   }
 
   @Override
   public void run()
   {
 
+  }
+
+  public void stop()
+  {
+    System.out.println( "Stopped AI" );
   }
 }

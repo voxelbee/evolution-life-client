@@ -8,6 +8,7 @@
 
 // Apply the java-library plugin to add support for Java Library
 apply plugin: 'java-library'
+apply plugin: 'eclipse'
 
 // In this section you declare where to find the dependencies of your project
 repositories {
@@ -24,7 +25,7 @@ dependencies {
     implementation 'com.google.guava:guava:23.0'
     
     // https://mvnrepository.com/artifact/io.netty/netty-all
-	compile group: 'io.netty', name: 'netty-all', version: '4.1.36.Final'
+	compile group: 'io.netty', name: 'netty-all', version: '4.1.25.Final'
     
 
     // Use JUnit test framework
